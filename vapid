@@ -1,0 +1,14 @@
+Reference: https://developers.google.com/web/fundamentals/push-notifications/subscribing-a-user
+Creating VAPID keys using web-push command line:
+npm install -g web-push
+web-push generate-vapid-keys
+
+=======================================
+
+Public Key:
+BKD0IH4Eq6-_8-k8vViFfsFttmT8rkM1lXPB6uTwngR-Q27M4JFr4yFZJ3y56-gYBcBvFkXvD5-MlZfX0FHd-Fc
+
+Private Key:
+OQ_YEviY-rpNr6dNaHx4V716zGkxcN9nxC4p-hE0LKg
+
+=======================================
