@@ -26,6 +26,7 @@ const saveSubscription = async subscription => {
 
 }
 
+
 self.addEventListener('activate', async () => {
   // This will be called only once when the service worker is activated.
   try {
@@ -37,7 +38,7 @@ self.addEventListener('activate', async () => {
     const subscription = await self.registration.pushManager.subscribe(options)
     console.log(JSON.stringify(subscription))
     const response = await saveSubscription(subscription)
-    console.log(response)
+    console.log("Saving...." + response)
   } catch (err) {
     console.log('Error', err)
   }

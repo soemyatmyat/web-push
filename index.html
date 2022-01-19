@@ -6,10 +6,12 @@
     <title>Web Push Demo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="index.css" />
-    <script src="index.js"></script> <!-- load the front-end js-->
+    <script src="index.js"></script> <!-- load the front-end js, this would be the Web push Service Provider's SDK-->
   </head>
   <body>
    <h1>Hello World</h1>
+<p>   Safari and Firefox require an event to happen on the page prior to requesting the user permission. Triggering the call prior to an event on the page will result in the request failing. An event can be any click on the page. It is expected that other browsers, for example Chrome, will soon have a similar requirement.
+</p>
    <button id="permission-btn" onclick="main()">Ask Permission</button>
   </body>
 </html>

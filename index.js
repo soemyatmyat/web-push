@@ -1,6 +1,6 @@
-console.log("front-end js is working");
+console.log("this would be Web Push Provider SDK");
 
-// 1. Feature detection - check if browser supports push messaging.
+// Feature detection - check if browser supports push messaging.
 const check = () => {
   if (!('serviceWorker' in navigator)) {
     throw new Error('Service Worker is not supported on this browser.')
@@ -10,14 +10,14 @@ const check = () => {
   }
 }
 
-// 2. Register a Service Worker
+// Register a Service Worker
 const registerServiceWorker = async () => {
   const swRegistration = await navigator.serviceWorker.register('service.js'); //register the serviceworker, supply where your serviceworker file is located.
   console.log('Service Worker successfully registered.')
   return swRegistration;
 }
 
-// 3. Requesting Permission
+// Requesting Permission
 const requestNotificationPermission = async () => {
   const permission = await window.Notification.requestPermission();
   // value of permission can be 'granted', 'default', 'denied'
@@ -42,10 +42,16 @@ const showLocalNotification = (title, body, swRegistration) => {
 */
 
 // main will be triggered when a button is clicked.
+// 1. check if the browser supports web push notifications
+// 2. ask for permission if not already allowed
+// 3. register the service worker if permission allows.
 const main = async () => { //async loading the service worker
     check();
-    const swRegistration = await registerServiceWorker();
+    //const swRegistration = await registerServiceWorker();
     const permission=await requestNotificationPermission();
+    if(permission !== 'denied' && permission !== 'default'){
+        const swRegistration = await registerServiceWorker();
+    }
     //showLocalNotification('Title','Body Message',swRegistration);
 }
 

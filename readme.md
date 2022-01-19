@@ -12,7 +12,7 @@ Note C: In Chrome Dev tools, Application > Service Worker is available to unregi
 3. Push API (Server-Side): provided by Push Service Provider <br>
 
 Project structure<br>
-1. service.js: to be placed at the root of the domain to listen to the events of the entire origin domain. <br>
+1. [Service Worker] service.js: to be placed at the root of the domain to listen to the events of the entire origin domain. <br>
 Notification permission should not be in the main function. Check out this https://developers.google.com/web/fundamentals/push-notifications/permission-ux on where it should be placed for production app. <br>
 
 
