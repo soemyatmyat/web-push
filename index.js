@@ -36,10 +36,12 @@ const requestNotificationPermission = async () => {
 const showLocalNotification = (title, body, swRegistration) => {
   console.log('Showing Local Notification..')
   const options = {
-      body
+      body: body
       // here you can add more properties like icon, image, vibrate, etc.
   };
-  swRegistration.showNotification(title, options);
+  navigator.serviceWorker.ready.then(function(swRegistration) {
+    swRegistration.showNotification(title, options);
+  })
 }
 
 
@@ -47,15 +49,15 @@ const showLocalNotification = (title, body, swRegistration) => {
 // 1. check if the browser supports web push notifications
 // 2. ask for permission if not already allowed
 // 3. register the service worker if permission allows.
+// 4. (optional) Send the local notification to test
 const main = async () => { //async loading the service worker
     check();
     //const swRegistration = await registerServiceWorker();
     const permission=await requestNotificationPermission();
     if(permission !== 'denied' && permission !== 'default'){
         const swRegistration = await registerServiceWorker();
-        showLocalNotification('This is title','this is the message',swRegistration);
+        showLocalNotification('Incoming..','Buzz! Buzz',swRegistration); //optional.
     }
-    //showLocalNotification('Title','Body Message',swRegistration);
 }
 
 console.log(Notification.permission);//output will be either granted, default or denied

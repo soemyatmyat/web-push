@@ -27,24 +27,7 @@ const saveSubscription = async subscription => {
 }
 
 
-self.addEventListener('activate', async () => {
-  // This will be called only once when the service worker is activated.
-  try {
-    const applicationServerKey = urlBase64ToUint8Array(
-      'BKD0IH4Eq6-_8-k8vViFfsFttmT8rkM1lXPB6uTwngR-Q27M4JFr4yFZJ3y56-gYBcBvFkXvD5-MlZfX0FHd-Fc'
-    )
-    const options = { applicationServerKey, userVisibleOnly: true }
-    //const options={}
-    const subscription = await self.registration.pushManager.subscribe(options)
-    console.log(JSON.stringify(subscription))
-    const response = await saveSubscription(subscription)
-    console.log("Saving...." + response)
-  } catch (err) {
-    console.log('Error', err)
-  }
-})
-/*
-//4. Subscribe the user to web push registerServiceWorker
+//Subscribe the user to web push registerServiceWorker
 self.addEventListener('activate', async () => {
   // This will be called only once when the service worker is activated.
   // When calling the subscribe() method, we pass in an options object, which consists of both required and optional parameters.
@@ -52,32 +35,34 @@ self.addEventListener('activate', async () => {
   try {
     const options = {
       userVisibleOnly: true, //a mandatory field for chrome, agreement to say there's no silent push.
-      applicationServerKey:urlBase64ToUint8Array('')
+      applicationServerKey:urlBase64ToUint8Array('BKD0IH4Eq6-_8-k8vViFfsFttmT8rkM1lXPB6uTwngR-Q27M4JFr4yFZJ3y56-gYBcBvFkXvD5-MlZfX0FHd-Fc')
       //used by a push service to identify the application subscribing a user and ensure that the same application is messaging that user. In firebased browser,it's VAPID
     }
     const subscription=await self.registration.pushManager.subscribe(options)
-    alert.log(JSON.stringify(subscription))
+    console.log(JSON.stringify(subscription))
     const response=await saveSubscription(subscription)
-    alert.log(response)
+    console.log(response)
   } catch (err) {
     console.log('Error', err)
   }
-})*/
+})
 
 self.addEventListener('push', function(event) {
   console.log("listening to push");
   if (event.data) {
     console.log('Push event!! ', event.data.text());
-    showLocalNotification("Web Push Title", event.data.text(),self.registration);
+    showLocalNotification("Web Push", event.data.text(),self.registration);
   } else {
     console.log('Push event but no data')
   }
 })
 
 const showLocalNotification = (title, body, swRegistration) => {
+  console.log('Showing Local Notification..')
   const options = {
-    body,
-    // here you can add more properties like icon, image, vibrate, etc.
+      body: body
   };
+  console.log(swRegistration)
   swRegistration.showNotification(title, options);
-};
+
+}
