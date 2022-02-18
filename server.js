@@ -1,4 +1,4 @@
-//import express and cors modules
+// import express and cors modules
 // express is for building the Rest APIs
 // cors provides Express middleware to enable CORS with various options
 const express=require("express");
