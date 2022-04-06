@@ -32,9 +32,16 @@ Some websites, however, only register the service worker when user has granted t
 
 Only when permission is granted, service worker should be activated.
 
-Source >> Service Worker Lifecycle: https://developers.google.com/web/fundamentals/primers/service-workers/lifecycle
-
-<br> The other thing to note is even when service worker is unregistered 
+Anothing thing is even when service worker is unregistered from the browser, the service worker may not die immediately. If the worker is currently performing any tasks for a client, it will compelte before being officially removed. It will only be removed after page reload or closed. 
+```
+navigator.serviceWorker.getRegistration().then(
+    function(registrations) {
+        for(let registration of registrations) {
+            registration.unregister()
+        }
+    }
+)
+```
 
 3. [Entry Page] index.html: where index.js loaded (can be asynced in order not to have an impact on website performance)
 
@@ -47,6 +54,6 @@ b. notifications settings -> disable Do not distrub
 
 
 ## Resources
-https://developer.mozilla.org/en-US/docs/Web/API/notification
-https://developers.google.com/web/fundamentals/primers/service-workers
-https://developers.google.com/web/fundamentals/primers/service-workers/lifecycle
+1. https://developer.mozilla.org/en-US/docs/Web/API/notification
+2. https://developers.google.com/web/fundamentals/primers/service-workers
+3. https://developers.google.com/web/fundamentals/primers/service-workers/lifecycle
