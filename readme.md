@@ -1,5 +1,5 @@
 ## Description:
-A simple web page enabling the push notifications for the web.
+A simple web page showing how to integrate the web push notification using service worker and local web SDK for sending of push messages to browsers.
 
 # Overview 
 
